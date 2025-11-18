@@ -26,7 +26,12 @@ export class CrearComponent {
     private router: Router
   ) {}
 
-  guardar() {
+  guardar(form?: any) {
+    if (form && form.invalid) {
+      alert("Por favor completa correctamente el formulario.");
+      return;
+    }
+
     this.vehiculosService.crear(this.vehiculo).subscribe({
       next: () => {
         alert("Vehículo creado");

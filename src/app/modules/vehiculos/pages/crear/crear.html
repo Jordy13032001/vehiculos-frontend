@@ -1,24 +1,77 @@
 <div class="contenedor">
   <h1>➕ Registrar Vehículo</h1>
 
-  <form (ngSubmit)="guardar()">
+  <form #formVehiculo="ngForm" (ngSubmit)="guardar()" novalidate>
 
+    <!-- MARCA -->
     <label>Marca:</label>
-    <input type="text" [(ngModel)]="vehiculo.marca" name="marca" required>
+    <input type="text"
+           [(ngModel)]="vehiculo.marca"
+           name="marca"
+           required
+           minlength="2"
+           #marca="ngModel">
+    <div class="error" *ngIf="marca.invalid && marca.touched">
+      <p *ngIf="marca.errors?.['required']">La marca es obligatoria.</p>
+      <p *ngIf="marca.errors?.['minlength']">Mínimo 2 caracteres.</p>
+    </div>
 
+    <!-- MODELO -->
     <label>Modelo:</label>
-    <input type="text" [(ngModel)]="vehiculo.modelo" name="modelo" required>
+    <input type="text"
+           [(ngModel)]="vehiculo.modelo"
+           name="modelo"
+           required
+           minlength="2"
+           #modelo="ngModel">
+    <div class="error" *ngIf="modelo.invalid && modelo.touched">
+      <p *ngIf="modelo.errors?.['required']">El modelo es obligatorio.</p>
+      <p *ngIf="modelo.errors?.['minlength']">Mínimo 2 caracteres.</p>
+    </div>
 
+    <!-- AÑO -->
     <label>Año:</label>
-    <input type="number" [(ngModel)]="vehiculo.anio" name="anio" required>
+    <input type="number"
+           [(ngModel)]="vehiculo.anio"
+           name="anio"
+           required
+           min="1990"
+           max="2025"
+           #anio="ngModel">
+    <div class="error" *ngIf="anio.invalid && anio.touched">
+      <p *ngIf="anio.errors?.['required']">El año es obligatorio.</p>
+      <p *ngIf="anio.errors?.['min']">Debe ser mayor o igual a 1990.</p>
+      <p *ngIf="anio.errors?.['max']">Debe ser menor o igual a 2025.</p>
+    </div>
 
+    <!-- TIPO -->
     <label>Tipo:</label>
-    <input type="text" [(ngModel)]="vehiculo.tipo" name="tipo" required>
+    <input type="text"
+           [(ngModel)]="vehiculo.tipo"
+           name="tipo"
+           required
+           #tipo="ngModel">
+    <div class="error" *ngIf="tipo.invalid && tipo.touched">
+      <p *ngIf="tipo.errors?.['required']">El tipo es obligatorio.</p>
+    </div>
 
+    <!-- KILOMETRAJE -->
     <label>Kilometraje:</label>
-    <input type="number" [(ngModel)]="vehiculo.kilometraje" name="kilometraje" required>
+    <input type="number"
+           [(ngModel)]="vehiculo.kilometraje"
+           name="kilometraje"
+           required
+           min="0"
+           #kilometraje="ngModel">
+    <div class="error" *ngIf="kilometraje.invalid && kilometraje.touched">
+      <p *ngIf="kilometraje.errors?.['required']">El kilometraje es obligatorio.</p>
+      <p *ngIf="kilometraje.errors?.['min']">Debe ser un número positivo.</p>
+    </div>
 
-    <button class="btn-guardar" type="submit">Guardar Vehículo</button>
+    <!-- BOTÓN -->
+    <button class="btn-guardar" type="submit" [disabled]="formVehiculo.invalid">
+      Guardar Vehículo
+    </button>
   </form>
 
   <button class="btn-volver" (click)="volver()">Volver</button>
