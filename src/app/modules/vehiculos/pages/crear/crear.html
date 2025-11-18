@@ -1,0 +1,25 @@
+<div class="contenedor">
+  <h1>➕ Registrar Vehículo</h1>
+
+  <form (ngSubmit)="guardar()">
+
+    <label>Marca:</label>
+    <input type="text" [(ngModel)]="vehiculo.marca" name="marca" required>
+
+    <label>Modelo:</label>
+    <input type="text" [(ngModel)]="vehiculo.modelo" name="modelo" required>
+
+    <label>Año:</label>
+    <input type="number" [(ngModel)]="vehiculo.anio" name="anio" required>
+
+    <label>Tipo:</label>
+    <input type="text" [(ngModel)]="vehiculo.tipo" name="tipo" required>
+
+    <label>Kilometraje:</label>
+    <input type="number" [(ngModel)]="vehiculo.kilometraje" name="kilometraje" required>
+
+    <button class="btn-guardar" type="submit">Guardar Vehículo</button>
+  </form>
+
+  <button class="btn-volver" (click)="volver()">Volver</button>
+</div>

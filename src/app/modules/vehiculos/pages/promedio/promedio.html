@@ -1,0 +1,12 @@
+<div class="contenedor">
+  <h1>📊 Promedio de Kilometraje</h1>
+
+  <p *ngIf="cargando">Calculando...</p>
+
+  <div *ngIf="!cargando" class="card">
+    <h2>{{ promedio | number:'1.0-2' }} km</h2>
+  </div>
+
+  <button class="btn-recargar" (click)="calcular()">Recalcular</button>
+  <button class="btn-volver" (click)="volver()">Volver</button>
+</div>

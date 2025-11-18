@@ -1,0 +1,39 @@
+<div class="contenedor">
+  <h1>📋 Lista de Vehículos</h1>
+
+  <button class="btn-crear" (click)="crearVehiculo()">+ Crear Vehículo</button>
+
+  <table *ngIf="!cargando && vehiculos.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Año</th>
+        <th>Tipo</th>
+        <th>Kilometraje</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let v of vehiculos">
+        <td>{{ v.id }}</td>
+        <td>{{ v.marca }}</td>
+        <td>{{ v.modelo }}</td>
+        <td>{{ v.anio }}</td>
+        <td>{{ v.tipo }}</td>
+        <td>{{ v.kilometraje }}</td>
+
+        <td>
+          <button class="btn-editar" (click)="editarVehiculo(v.id)">Editar</button>
+          <button class="btn-eliminar" (click)="eliminarVehiculo(v.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!cargando && vehiculos.length === 0">No hay vehículos registrados.</p>
+
+  <p *ngIf="cargando">Cargando...</p>
+</div>
